@@ -1,0 +1,395 @@
+// Variables
+// Main Colors
+$red:hsl(7, 99%, 70%);
+$yellow:hsl(51, 100%, 49%);
+$darkCyan:hsl(167, 40%, 24%);
+$darkBlue:hsl(198, 62%, 26%);
+$cyan:hsl(168, 34%, 41%);
+// Neutral Colors
+$desaturatedBlue:hsl(212, 27%, 19%);
+$darkGrayBlue:hsl(213, 9%, 39%);
+$grayBlue:hsl(232, 10%, 55%);
+$lightGrayBlue:hsl(210, 4%, 67%);
+$white:hsl(0, 0%, 100%);
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,600;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,700;1,9..144,900&display=swap');
+
+// Page Setup
+html {
+    font-size: 18px;
+}
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+}
+img, svg, video, picture {
+    display: block;
+    max-width: 100%;
+    &::selection {
+        background-color: transparent;
+    }
+    &::-moz-selection {
+        background-color: transparent;
+    }
+}
+input, textarea, button, select {
+    font: inherit;
+}
+body {
+    overflow-x: hidden;
+    min-height: 100vh;
+    width: 100%;
+    font-family: 'Barlow', sans-serif;
+    scrollbar-width: thin;
+    scrollbar-color: $cyan;
+    color: $desaturatedBlue;
+    background-color: #fffaf9;
+    &::-webkit-scrollbar {
+        width: .4rem;
+    }
+    &::-webkit-scrollbar-track {
+        background-color: $white;
+        border: 2px solid $white;
+        border-radius: 100vw;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $cyan;
+        border: 2px solid $white;
+        border-radius: 100vw;
+    }
+}
+// Typography
+p, a {
+    font-size: 1rem;
+}
+p {
+    line-height: 170%;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+}
+
+// Individual Style Classes
+.container {
+    margin: 0 auto;
+}
+.btn {
+    display: inline-block;
+    cursor: pointer;
+    &.btnPrimary {
+        background-color: $white;
+        color: $darkBlue;
+        border-radius: 100vw;
+        padding: .8rem 1.3rem;
+        font-family: 'Fraunces', serif;
+        text-transform: uppercase;
+        &:hover {
+            background-color: rgba(255,255,255,.3);
+            color: white;
+        }
+    }
+    transition: .3s;
+}
+
+// SiteHeader
+.siteHeader {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2rem 2%;
+    }
+    .headerRight {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        .headerLink {
+            margin-top: -.1rem;
+            color: $white;
+        }
+    }
+}
+
+// Hero Section
+.heroBanner {
+    min-height: 100vh;
+    height: auto;
+    background: url("../images/desktop/image-header.jpg") center bottom no-repeat;
+    background-size: cover;
+    color: $white;
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr;
+    h1 {
+        text-transform: uppercase;
+        font-size: 3.2rem;
+        letter-spacing: .6rem;
+    }
+    .heroText {
+        text-align: center;
+    }
+    a {
+        width: auto;
+        margin: 5rem auto;
+        display: inline-block;
+    }
+    img {
+        height: 6rem;
+        cursor: pointer;
+    }
+}
+
+// Gallery Left
+.galleryWrapper {
+    .galleryLeft, .galleryRight {
+        display: flex;
+        & > * {
+            flex: 1;
+            width: 50%;
+        }
+        img {
+            aspect-ratio: 4/3;
+            object-fit: cover;
+        }
+    }
+    .galleryContent {
+        display: grid;
+        place-content: center;
+    }
+    .galleryText {
+        width: 70%;
+        margin: auto;
+        h2 {
+            font-size: 2.4rem;
+            max-width: 90%;
+        }
+        p {
+            color: $grayBlue;
+            margin: 1.8rem 0;
+        }
+        a {
+            text-transform: uppercase;
+            color: $desaturatedBlue;
+            font-family: "Fraunces", serif;
+            font-weight: 900;
+            position: relative;
+            margin-inline-start: 2%;
+            &::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: -8%;
+                width: 116%;
+                height: .5rem;
+                border-radius: 100vw;
+                z-index: -1;
+                opacity: .27;
+                transition: .3s;
+            }
+            &:hover::after {
+                opacity: 1;
+            }
+        }
+    }
+    .galleryLeft {
+        a::after {
+            background-color: $yellow;
+        }
+    }
+    .galleryRight {
+        a::after {
+            background-color: $red;
+        }
+    }
+}
+// Gallery End
+.galleryGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    .galleryCol {
+        position: relative;
+        img {
+            aspect-ratio: 16/11;
+            width: 100%;
+            object-fit: cover;
+        }
+        .colText {
+            position: absolute;
+            bottom: 2.6rem;
+            left: 50%;
+            transform: translate(-50%, 0);
+            text-align: center;
+            p {
+                margin-top: 1.4rem;
+                opacity: .7;
+            }
+            &.green {
+                color: $darkCyan;
+            }
+            &.blue {
+                color: $darkBlue;
+            }
+        }
+    }
+}
+
+// Testimonials section
+.testimonials {
+    min-height: 100vh;
+    height: auto;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    h2 {
+        color: $lightGrayBlue;
+        font-size: 1.2rem;
+        letter-spacing: .3rem;
+        margin-bottom: 2.6rem;
+
+    }
+    .testimonialsGrid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.6rem;
+        max-width: 80%;
+        margin: 0 auto;
+    }
+    .profile {
+        height: 4rem;
+        border-radius: 100vw;
+    }
+    .testimonialChild {
+        img, p {
+            margin: 2.6rem auto;
+        }
+        p {
+            color: $darkGrayBlue;
+        }
+        h3 {
+            font-size: 1rem;
+        }
+        h5 {
+            font-family: 'Barlow', sans-serif;
+            color: $lightGrayBlue;
+            margin-top: .5rem;
+        }
+    }
+}
+
+// Images above footer
+.footGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    img {
+        aspect-ratio: 1/1.4;
+        object-fit: cover;
+    }
+}
+
+// Footer Section
+.siteFooter {
+    background-color: #91d4c4;
+    color: $darkCyan;
+    text-align: center;
+    padding: 4rem 0;
+    svg {
+        margin: auto;
+    }
+    .footerLinks {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 2.5rem auto;
+        gap: 2.4rem;
+        a {
+            color: $cyan;
+            &:hover {
+                color: $white;
+            }
+        }
+    }
+    .socials {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.6rem;
+        img {
+            height: 1.2rem;
+        }
+        a:hover {
+            img {
+                filter: brightness(20);
+            }
+        }
+    }
+}
+
+// Media Queries
+@media only screen and (max-width: 1400px) {
+    .galleryGrid {
+        .galleryCol {
+            img {
+                aspect-ratio: 16/15;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 1100px) {
+    .galleryWrapper {
+        .galleryLeft, .galleryRight {
+            img {
+                aspect-ratio: 1;
+            }
+        }
+    }
+    .galleryGrid {
+        .galleryCol {
+            .colText {
+                width: 90%;
+            }
+        }
+    }
+    .testimonials {
+        min-height: auto;
+        margin: 6rem auto;
+    }
+}
+@media only screen and (max-width: 991px) {
+    .siteHeader {
+        .container {
+            padding: 2rem;
+        }
+    }
+    .galleryWrapper {
+        .galleryLeft, .galleryRight {
+            img {
+                aspect-ratio: 3/4;
+            }
+        }
+    }
+    .galleryGrid {
+        .galleryCol {
+            img {
+                aspect-ratio: 14/16;
+            }
+        }
+    }
+    .testimonials {
+        .testimonialsGrid {
+            max-width: 90%;
+        }
+    }
+}
